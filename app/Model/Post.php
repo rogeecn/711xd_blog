@@ -99,6 +99,7 @@ _TPL;
 //        > Type: {typeList}
 //        > Status: {statusList}
 
+        //todo: process tags
         $attributes = [
             '{title}' => $this->title ?? "",
             '{slug}' => $this->slug ?? "",
