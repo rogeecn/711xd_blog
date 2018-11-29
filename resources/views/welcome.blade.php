@@ -5,7 +5,7 @@
         <div class="card-header bg-white border-0">
             <a href="" class="article-title"><h2 class="m-0 h3">Hello World</h2></a>
             <small class="text-muted d-block">
-                发布时间：123123
+                发布时间：{{ today()->format("Y/m/d")}}
             </small>
         </div>
         <div class="card-body">
@@ -36,6 +36,7 @@
 
                 <div class="col-auto">
                     <a href="#" class="badge badge-pill badge-light border">Read More...</a>
+                    <a href="#" class="badge badge-pill badge-info border">编辑</a>
                 </div>
             </div>
         </div>
