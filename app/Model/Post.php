@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Model\traits\RawContent;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
@@ -44,7 +45,7 @@ use Spatie\Sluggable\SlugOptions;
  */
 class Post extends BaseModel
 {
-    use HasSlug, SoftDeletes;
+    use HasSlug, SoftDeletes, RawContent;
 
     const META_BREAKER = "----------------------";
 
@@ -74,49 +75,14 @@ class Post extends BaseModel
         return $this->hasOne(Content::class);
     }
 
-    public function tags()
+    public function author()
     {
-        return [1, 2, 3];
+        return $this->belongsTo(User::class, 'author');
     }
 
-    public function getRawContentAttribute()
+    public function tags()
     {
-        $template = <<<_TPL
-- Title: {title}
-- Slug: {slug}
-- Tags: {tags}
-- Layout: {layout}
-- Type: {type}
-- Status: {status}
-
-{breaker}
-
-{content}
-_TPL;
-
-
-//        > Layout: {layoutList}
-//        > Type: {typeList}
-//        > Status: {statusList}
-
-        //todo: process tags
-        $attributes = [
-            '{title}' => $this->title ?? "",
-            '{slug}' => $this->slug ?? "",
-            '{tags}' => value(function () {
-                return implode(",", $this->tags());
-            }),
-            '{layout}' => $this->layout ?? collect($this->layoutList())->keys()->first(),
-            '{layoutList}' => collect($this->layoutList())->keys()->implode(","),
-            '{type}' => $this->type ?? collect($this->typeList())->keys()->first(),
-            '{typeList}' => collect($this->typeList())->keys()->implode(","),
-            '{status}' => collect($this->humanStatusMap())->get($this->status) ?? collect($this->humanStatusMap())->first(),
-            '{statusList}' => collect($this->humanStatusMap())->values()->implode(","),
-            '{breaker}' => static::META_BREAKER,
-            '{content}' => $this->content->content ?? "",
-        ];
-
-        return strtr($template, $attributes);
+        return $this->belongsToMany(Tag::class, 'post_tag');
     }
 
     public function statusList()

@@ -16,3 +16,9 @@ use Illuminate\Foundation\Inspiring;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->describe('Display an inspiring quote');
+
+Artisan::command("test", function () {
+    \App\Model\Post::first()->tags()->sync([1, 2]);
+    dd(\App\Model\Post::first()->tags->toArray());
+    dd(\App\Model\Tag::first()->posts->toArray());
+});

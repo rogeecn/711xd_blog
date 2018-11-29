@@ -18,6 +18,7 @@ class Tag extends BaseModel
 {
     public function posts()
     {
+        return $this->belongsToMany(Post::class, "post_tag");
     }
 
     public function getIdListByTagName($tagNameList = [])
