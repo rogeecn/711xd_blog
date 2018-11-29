@@ -39,11 +39,16 @@
         <ul class="navbar-nav">
 
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('/') }}">友情链接</a>
+                <a class="nav-link" href="{{ route('post.create') }}">发布</a>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('post.edit',['id'=>1]) }}">编辑</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('/') }}">关于我</a>
+                <a class="nav-link" href="{{ url('logout') }}">退出</a>
             </li>
 
         </ul>
