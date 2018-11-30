@@ -33,7 +33,7 @@
         {{--side bard--}}
         <div class="col-md-4">
 
-            <div class="card bg-white border-0 shadow">
+            <div class="card bg-white border-0 ">
                 <div class="card-body">
                     <h3 class="card-title">Hello</h3>
                     hello world

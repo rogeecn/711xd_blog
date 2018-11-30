@@ -4,7 +4,7 @@
     <?php
     /** @var $model \App\Model\Post */
     ?>
-    <div class="card bg-white border-0 mb-4 shadow">
+    <div class="card bg-white border-0 mb-4">
 
         <div class="card-body">
             <h1>{{ $model->title }}</h1>
@@ -26,7 +26,7 @@
 
         <div class="card-body">
             @foreach($model->postTags as $tag)
-                {!! Html::link(route("tag", ['name'=>$tag->name]), $tag->name,['class'=>"badge badge-pill badge-light border"])  !!}
+                {!! Html::link(route("tag.single", ['name'=>$tag->name]), $tag->name,['class'=>"badge badge-pill badge-light border"])  !!}
             @endforeach
         </div>
 

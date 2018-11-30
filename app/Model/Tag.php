@@ -29,6 +29,11 @@ class Tag extends BaseModel
         return $items;
     }
 
+    public function getIdByName($name)
+    {
+
+    }
+
 
     public function suggestTags($baseTagName, $count = 10)
     {

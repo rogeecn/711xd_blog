@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 
 class ReadController extends Controller
 {
-    public function index($id)
+    public function index($slug)
     {
         return view("read", [
-            'model' => Post::findOrFail($id)
+            'model' => Post::newModelInstance()->setKeyName("slug")->findOrFail($slug),
         ]);
     }
 }
