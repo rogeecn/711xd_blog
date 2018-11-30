@@ -7,11 +7,7 @@ Auth::routes();
 
 Route::get('/', "IndexController@index")->name("index");
 
-Route::get('/read/{slug}', "ReadController@index")->name("read");
-
-Route::get('/friendlink', "FriendlinkController@index")->name("friendlink");
-
-Route::get('/about', "AboutController@index")->name("about");
+Route::get('/p/{slug}', "ReadController@index")->name("read");
 
 Route::prefix("/tag")->name('tag.')->group(function () {
 

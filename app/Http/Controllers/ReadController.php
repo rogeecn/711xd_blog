@@ -9,8 +9,10 @@ class ReadController extends Controller
 {
     public function index($slug)
     {
-        return view("read", [
-            'model' => Post::newModelInstance()->setKeyName("slug")->findOrFail($slug),
+        $model = Post::newModelInstance()->setKeyName("slug")->findOrFail($slug);
+
+        return view("read.{$model->type}", [
+            'model' => $model,
         ]);
     }
 }

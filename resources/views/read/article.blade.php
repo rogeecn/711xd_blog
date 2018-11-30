@@ -1,4 +1,4 @@
-@extends('_layouts.app')
+@extends('_layouts.read.'.$model->layout)
 
 @section('content')
     <?php
