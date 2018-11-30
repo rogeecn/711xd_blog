@@ -12,7 +12,7 @@
             <div class="text-muted d-block mt-3">
                 <span class="mr-3">发布时间:{{ $model->created_at->format("Y/m/d")}}</span>
                 <span class="mr-3">作者:{{ $model->authorUser->name }}</span>
-                @auth
+                @if(auth()->id() == $model->author)
                     <span class="mr-3">
                         {!! Html::link(route("post.edit", ['id'=>$model->id]), '编辑',['class'=>"badge badge-pill badge-info border"])  !!}
                     </span>

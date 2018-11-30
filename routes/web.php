@@ -31,3 +31,8 @@ Route::prefix("/post")->name('post.')->middleware("auth")->group(function () {
     Route::post("image/upload", "ImageController@upload")->name('image_upload');
 
 });
+
+
+Route::get("/{year}/{month}/{day}/{slug}", function ($year, $month, $day, $slug) {
+    return redirect()->route("read", ['slug' => $slug]);
+}, 301);

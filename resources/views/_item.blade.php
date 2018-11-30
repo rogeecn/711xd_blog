@@ -26,7 +26,7 @@
 
             <div class="col-auto">
                 {!! Html::link(route("read", ['slug'=>$model->slug]), 'Read More...',['class'=>"badge badge-pill badge-light border"])  !!}
-                @auth
+                @if(auth()->id() == $model->author)
                     {!! Html::link(route("post.edit", ['id'=>$model->id]), '编辑',['class'=>"badge badge-pill badge-info border"])  !!}
                 @endauth
             </div>
