@@ -13,7 +13,8 @@
     .editormd-fullscreen {
         z-index: 10;
     }
-    .CodeMirror-cursor{
+
+    .CodeMirror-cursor {
         min-width: 10px;
     }
 </style>
@@ -57,13 +58,21 @@
             imageUpload: true,
             imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
             imageUploadURL: "{{ route('post.image_upload') }}",
+            toolbarIconsClass: {
+                backHome: "fa-home",
+                dataSubmit: "fa-save",
+            },
+            toolbarIconTexts: {
+                backHome: "返回首页",
+                dataSubmit: "保存数据",
+            },
             toolbarHandlers: {
                 dataSubmit: function (cm, icon, cursor, selection) {
                     $("#post-content").closest("form").submit();
                 },
-            },
-            toolbarCustomIcons: {
-                dataSubmit: '{!! Form::submit("保存文章",['class'=>'btn btn-info btn-sm']) !!}',
+                backHome: function (cm, icon, cursor, selection) {
+                    location.href = '{{ route('index') }}';
+                },
             },
             onload: function () {
                 console.log('onload', this);

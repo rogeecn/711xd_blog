@@ -84,6 +84,14 @@ class Post extends FormRequest
         return "";
     }
 
+    public function tags()
+    {
+        $tagList = explode(",", $this->get("tags"));
+        return collect($tagList)->map(function ($item) {
+            return trim($item);
+        })->filter()->toArray();
+    }
+
     private function parseData()
     {
         $content = $this->get("raw_content");

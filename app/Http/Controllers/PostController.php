@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Post;
 use App\Model\Content;
 use App\Model\Post as PostModel;
+use App\Model\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -34,13 +35,20 @@ class PostController extends Controller
         $model = $request->getModel();
 
         DB::transaction(function () use ($model, $request) {
+
             $model->author = 0;//auth()->user()->id;
-            $model->save();
+            if (!$model->save()) {
+                throw new \Exception("save post fail");
+            }
 
             Content::updateOrInsert(
                 ['post_id' => $model->id],
                 ['content' => $request->get('content')]
             );
+
+            $tagIdList = (new Tag())->getIdListByTagName($request->tags());
+            $model->postTags()->sync($tagIdList);
+
         });
 
         return redirect(route('post.edit', ['id' => $model->id]));
@@ -61,11 +69,19 @@ class PostController extends Controller
     {
         $model = $request->getModel();
         DB::transaction(function () use ($model, $request, $id) {
+
             $data = collect($request->validated());
-            $model->fill($data->except("content")->toArray());
+            $model->fill($request->validated());
             $model->save();
 
-            Content::updateOrInsert(['post_id' => $id], $data->only("content")->toArray());
+            Content::updateOrInsert(
+                ['post_id' => $model->id],
+                ['content' => $request->get('content')]
+            );
+
+            $tagIdList = (new Tag())->getIdListByTagName($request->tags());
+            $model->postTags()->sync($tagIdList);
+
         });
         return redirect(route('post.edit', ['id' => $id]));
     }

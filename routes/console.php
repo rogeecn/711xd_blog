@@ -18,5 +18,7 @@ Artisan::command('inspire', function () {
 })->describe('Display an inspiring quote');
 
 Artisan::command("test", function () {
-    dd(\App\Model\Post::first()->tags);
+    $data = [11,22,33,44];
+    $ret = \App\Model\Tag::newModelInstance()->getIdListByTagName($data);
+    dd($ret);
 });

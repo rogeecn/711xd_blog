@@ -2,8 +2,16 @@
 
 namespace App\Model;
 
+/**
+ * Class Tag
+ * @package App\Model
+ * @mixin \Eloquent
+ */
 class Tag extends BaseModel
 {
+    protected $fillable = ['name'];
+    public $timestamps = false;
+
     public function posts()
     {
         return $this->belongsToMany(Post::class, "post_tag");
@@ -11,10 +19,14 @@ class Tag extends BaseModel
 
     public function getIdListByTagName($tagNameList = [])
     {
-        if (empty($idList)) return [];
+        if (empty($tagNameList)) return [];
 
-        $list = static::whereIn("name", $tagNameList)->all();
-        return $list->pluck('id');
+        $items = collect($tagNameList)->map(function ($item) {
+            return static::firstOrCreate(['name' => $item])->id;
+
+        });
+
+        return $items;
     }
 
 

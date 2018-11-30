@@ -62,7 +62,7 @@
 
     editormd.toolbarModes = {
         custom: [
-            "dataSubmit", "|",
+            "backHome", "dataSubmit", "|",
             "undo", "redo", "|",
             "bold", "del", "italic", "quote", "ucwords", "uppercase", "lowercase", "|",
             "h1", "h2", "h3", "h4", "h5", "h6", "|",
@@ -555,7 +555,7 @@
             }
 
             editormd.loadScript(loadPath + "codemirror/codemirror.min", function () {
-                editormd.loadScript(loadPath + "codemirror/keymap/vim", function(){
+                editormd.loadScript(loadPath + "codemirror/keymap/vim", function () {
 
                 });
 
