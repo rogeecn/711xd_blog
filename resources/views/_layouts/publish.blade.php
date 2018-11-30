@@ -25,9 +25,9 @@
 <script src="{{ asset("library/editor.md/editormd.js") }}"></script>
 
 <script>
-    var testEditor;
+    var mdEditor;
     $(function () {
-        testEditor = editormd("post-content", {
+        mdEditor = editormd("post-content", {
             width: "100%",
             height: 540,
             path: '{{ asset('library/editor.md/lib') }}/',

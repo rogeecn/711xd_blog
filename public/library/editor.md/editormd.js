@@ -1833,6 +1833,7 @@
 
                 if (state.fullscreen) {
                     editor.height($(window).height());
+                    editor.width('100%');
                 }
 
                 if (settings.toolbar && !settings.readOnly) {
