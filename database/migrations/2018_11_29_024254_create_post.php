@@ -17,7 +17,7 @@ class CreatePost extends Migration
             $table->increments('id');
             $table->string('title')->nullable(false);
             $table->string('slug')->nullable(false)->unique();
-            $table->string('description')->nullable(false)->default('');
+            $table->text('description');
             $table->unsignedInteger('author')->nullable(false);
             $table->string('layout')->default('default');
             $table->string('type')->default("article");

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white border-bottom mb-5 shadow">
+<nav class="navbar navbar-expand-md navbar-light bg-white border-bottom mb-5
 
     {{--brand--}}
     <a class="navbar-brand" href="/">{{ config('app.name') }}</a>
@@ -38,18 +38,26 @@
         {{-- right nav bar --}}
         <ul class="navbar-nav">
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('post.create') }}">发布</a>
-            </li>
+            @guest()
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login') }}">登录</a>
+                </li>
+            @else
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('post.create') }}">写文章</a>
+                </li>
 
+                <li class="nav-item">
+                    <a class="nav-link text-danger" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                        退出登录
+                    </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('post.edit',['id'=>1]) }}">编辑</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('logout') }}">退出</a>
-            </li>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            @endguest()
 
         </ul>
     </div>

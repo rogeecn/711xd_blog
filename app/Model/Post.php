@@ -81,4 +81,22 @@ class Post extends BaseModel
             'page' => 'page',
         ];
     }
+
+    public function getMarkdownDescriptionAttribute()
+    {
+        return value(function () {
+            $parser = new \Parsedown();
+            return $parser->text($this->description);
+        });
+    }
+
+    public function getMarkdownContentAttribute()
+    {
+        return value(function () {
+            $parser = new \Parsedown();
+            return $parser->text(strtr($this->content->content, [
+                '[========]' => ''
+            ]));
+        });
+    }
 }
