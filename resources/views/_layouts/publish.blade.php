@@ -10,21 +10,12 @@
     <link rel="stylesheet" href="{{ asset("library/editor.md/css/editormd.css") }}">
 </head>
 <style>
-    .editormd-fullscreen{
+    .editormd-fullscreen {
         z-index: 10;
     }
 </style>
 <body>
-@include('_layouts._nav_component')
-
-<div class="container-fluid">
-    <div class="row">
-        {{-- main content --}}
-        <div class="col-md-12">
-            @yield('content')
-        </div>
-    </div>
-</div>
+@yield('content')
 
 <script src="{{ asset("js/jquery.min.js") }}"></script>
 <script src="{{ asset("js/bootstrap.js") }}"></script>
@@ -38,17 +29,17 @@
             height: 540,
             path: '{{ asset('library/editor.md/lib') }}/',
             theme: "default",
-            previewTheme: "default",
-            editorTheme: "default",
+            editorTheme: "3024-day",
+            // previewTheme: "default",
             // markdown: md,
             codeFold: true,
-            //syncScrolling : false,
+            syncScrolling: true,
             saveHTMLToTextarea: true,    // 保存 HTML 到 Textarea
             searchReplace: true,
-            //watch : false,                // 关闭实时预览
+            watch: false,                // 关闭实时预览
             htmlDecode: "style,script,iframe|on*",            // 开启 HTML 标签解析，为了安全性，默认不开启
-            //toolbar  : false,             //关闭工具栏
-            //previewCodeHighlight : false, // 关闭预览 HTML 的代码块高亮，默认开启
+            // toolbar: false,             //关闭工具栏
+            previewCodeHighlight: true, // 关闭预览 HTML 的代码块高亮，默认开启
             emoji: true,
             taskList: true,
             tocm: true,         // Using [TOCM]
@@ -64,10 +55,10 @@
             imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
             imageUploadURL: "{{ route('post.image_upload') }}",
             onload: function () {
-                // console.log('onload', this);
-                //this.fullscreen();
-                //this.unwatch();
-                //this.watch().fullscreen();
+                console.log('onload', this);
+                this.fullscreen();
+                // this.unwatch();
+                // this.watch().fullscreen();
 
                 //this.setMarkdown("#PHP");
                 //this.width("100%");
@@ -78,5 +69,6 @@
 
     })
 </script>
+{{--<script src="{{ asset("library/editor.md/lib/codemirror/keymap/vim.js") }}"></script>--}}
 </body>
 </html>

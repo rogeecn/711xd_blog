@@ -2,18 +2,6 @@
 
 namespace App\Model;
 
-/**
- * App\Model\Tag
- *
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Tag newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Tag newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Tag query()
- * @mixin \Eloquent
- * @property int $id
- * @property string $name
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Tag whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Tag whereName($value)
- */
 class Tag extends BaseModel
 {
     public function posts()

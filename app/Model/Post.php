@@ -7,42 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-/**
- * App\Model\Post
- *
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Post newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Post newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Post query()
- * @mixin \Eloquent
- * @property int $id
- * @property string $title
- * @property string $slug
- * @property string $description
- * @property int $author
- * @property string $layout
- * @property string $type
- * @property int $status
- * @property string|null $deleted_at
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Model\Content $content
- * @method static bool|null forceDelete()
- * @method static \Illuminate\Database\Query\Builder|\App\Model\Post onlyTrashed()
- * @method static bool|null restore()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Post whereAuthor($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Post whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Post whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Post whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Post whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Post whereLayout($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Post whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Post whereStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Post whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Post whereType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Post whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Model\Post withTrashed()
- * @method static \Illuminate\Database\Query\Builder|\App\Model\Post withoutTrashed()
- */
 class Post extends BaseModel
 {
     use HasSlug, SoftDeletes, RawContent;
@@ -70,17 +34,18 @@ class Post extends BaseModel
     const TYPE_ARTICLE = 'article';
     const TYPE_PAGE = 'page';
 
+    public function authorUser()
+    {
+        return $this->belongsTo(User::class, 'author');
+    }
+
     public function content()
     {
         return $this->hasOne(Content::class);
     }
 
-    public function author()
-    {
-        return $this->belongsTo(User::class, 'author');
-    }
 
-    public function tags()
+    public function postTags()
     {
         return $this->belongsToMany(Tag::class, 'post_tag');
     }

@@ -3,6 +3,8 @@
 namespace App\Model\traits;
 
 
+use App\Model\Tag;
+
 trait RawContent
 {
     public function getRawContentAttribute()
@@ -30,7 +32,7 @@ _TPL;
             '{title}' => $this->title ?? "",
             '{slug}' => $this->slug ?? "",
             '{tags}' => value(function () {
-                return implode(",", $this->tags());
+                return $this->postTags->pluck("name")->implode(",");
             }),
             '{layout}' => $this->layout ?? collect($this->layoutList())->keys()->first(),
             '{layoutList}' => collect($this->layoutList())->keys()->implode(","),

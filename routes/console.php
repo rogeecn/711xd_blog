@@ -18,7 +18,5 @@ Artisan::command('inspire', function () {
 })->describe('Display an inspiring quote');
 
 Artisan::command("test", function () {
-    \App\Model\Post::first()->tags()->sync([1, 2]);
-    dd(\App\Model\Post::first()->tags->toArray());
-    dd(\App\Model\Tag::first()->posts->toArray());
+    dd(\App\Model\Post::first()->tags);
 });
