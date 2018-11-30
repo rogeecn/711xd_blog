@@ -13,6 +13,9 @@
     .editormd-fullscreen {
         z-index: 10;
     }
+    .CodeMirror-cursor{
+        min-width: 10px;
+    }
 </style>
 <body>
 @yield('content')
@@ -54,6 +57,14 @@
             imageUpload: true,
             imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
             imageUploadURL: "{{ route('post.image_upload') }}",
+            toolbarHandlers: {
+                dataSubmit: function (cm, icon, cursor, selection) {
+                    $("#post-content").closest("form").submit();
+                },
+            },
+            toolbarCustomIcons: {
+                dataSubmit: '{!! Form::submit("保存文章",['class'=>'btn btn-info btn-sm']) !!}',
+            },
             onload: function () {
                 console.log('onload', this);
                 this.fullscreen();

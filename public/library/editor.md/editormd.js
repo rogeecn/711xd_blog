@@ -62,12 +62,14 @@
 
     editormd.toolbarModes = {
         custom: [
+            "dataSubmit", "|",
             "undo", "redo", "|",
             "bold", "del", "italic", "quote", "ucwords", "uppercase", "lowercase", "|",
             "h1", "h2", "h3", "h4", "h5", "h6", "|",
             "list-ul", "list-ol", "hr", "|",
             "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime", "emoji", "html-entities", "pagebreak", "|",
             "goto-line", "watch", "preview", "clear", "search", "|",
+
         ],
         full: [
             "undo", "redo", "|",
@@ -2200,7 +2202,14 @@
          */
 
         clear: function () {
-            this.cm.setValue("");
+            this.cm.setValue("- Title: \n" +
+                "- Slug: \n" +
+                "- Tags: \n" +
+                "- Layout: default\n" +
+                "- Type: article\n" +
+                "- Status: draft\n" +
+                "\n" +
+                "----------------------");
 
             return this;
         },
