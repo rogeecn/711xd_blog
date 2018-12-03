@@ -10,12 +10,12 @@
     <link rel="stylesheet" href="{{ asset("css/markdown.css") }}">
 
     <style>
-        .article-title{
+        .article-title {
             color: #343a40;
             text-decoration: none;
         }
 
-        .article-title:hover{
+        .article-title:hover {
             text-decoration: none;
         }
     </style>
@@ -34,10 +34,21 @@
         <div class="col-md-4">
 
             <div class="card bg-white border-0 ">
-                <div class="card-body">
-                    <h3 class="card-title">Hello</h3>
-                    hello world
-                </div>
+                <form class="card-body" action="{{ route("search") }}">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <input type="text"
+                                   name="keyword"
+                                   class="form-control"
+                                   placeholder="请输入关键字"
+                                   value="{{ $keyword??"" }}"
+                            >
+                        </div>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-primary btn-block">搜索</button>
+                        </div>
+                    </div>
+                </form>
             </div>
 
 

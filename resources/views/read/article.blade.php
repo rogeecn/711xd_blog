@@ -6,7 +6,7 @@
     ?>
     <div class="card bg-white border-0 mb-4">
 
-        <div class="card-body">
+        <div class="card-body markdown-body">
             <h1>{{ $model->title }}</h1>
 
             <div class="text-muted d-block mt-3">
@@ -20,7 +20,7 @@
             </div>
         </div>
 
-        <div class="card-body markdown-body">
+        <div class="markdown-body card-body">
             {!! $model->markdown_content !!}
         </div>
 
@@ -29,7 +29,6 @@
                 {!! Html::link(route("tag.single", ['name'=>$tag->name]), $tag->name,['class'=>"badge badge-pill badge-light border"])  !!}
             @endforeach
         </div>
-
     </div>
 
 @endsection

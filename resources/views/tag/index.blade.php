@@ -9,7 +9,7 @@
         <div class="card-body">
             @foreach($tagModels as $tagModel)
                 <a href="{{ route('tag.single',['name'=>$tagModel->name]) }}"
-                   class="btn btn-secondary btn-sm  mb-3 mr-3">
+                   class="btn btn-outline-secondary  mb-3 border-0">
                     {{ $tagModel->name }}
                 </a>
             @endforeach
