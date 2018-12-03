@@ -1,4 +1,5 @@
 @extends('_layouts.read.'.$model->layout)
+@section('title',  $model->title)
 
 @section('content')
 

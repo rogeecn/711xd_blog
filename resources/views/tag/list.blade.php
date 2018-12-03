@@ -1,4 +1,5 @@
 @extends('_layouts.app')
+@section('title',  "Tag: {$tagName}")
 
 
 @section('content')

@@ -1,4 +1,5 @@
 @extends('_layouts.pure')
+@section('title',  '登录')
 
 @section('content')
     <div class="container">

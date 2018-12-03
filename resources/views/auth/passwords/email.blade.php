@@ -1,4 +1,5 @@
 @extends('_layouts.pure')
+@section('title',  '邮件')
 
 @section('content')
 <div class="container">

@@ -2,6 +2,7 @@
 /** @var $model \App\Model\Tag */
 ?>
 @extends('_layouts.app')
+@section('title',  "Tag")
 
 
 @section('content')
